@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"net/http"
+
+	"github.com/julienschmidt/httprouter"
 )
 
 func handlerFunc(w http.ResponseWriter, r *http.Request) {
@@ -17,10 +19,18 @@ func handlerFunc(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	fmt.Fprint(w, "Welcome!\n")
+}
+
+func Hello(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	fmt.Fprintf(w, "Hola, %s!\n", ps.ByName("name"))
+}
+
 func main() {
-	mux := &http.ServeMux{}
-	// ServerMux match the longest path
-	// Order does not matter
-	mux.HandleFunc("/", handlerFunc)
-	_ = http.ListenAndServe(":3000", mux)
+	router := httprouter.New()
+	router.GET("/", Index)
+	router.GET("/hello/:name/spanish", Hello)
+
+	_ = http.ListenAndServe(":3000", router)
 }
