@@ -5,10 +5,13 @@ import (
 	"net/http"
 )
 
-
 func handlerFunc(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
-	fmt.Fprint(w, "<h1>Welcome to my awesome website</h1>")
+	if r.URL.Path == "/" {
+		fmt.Fprint(w, "<h1>Welcome to my awesome website</h1>")
+	} else if r.URL.Path == "/contact" {
+		fmt.Fprint(w, "<p>To get in touch, contact <a href=\"mailto:support@lenslock.com\">support@lenslock.com</a></p>")
+	}
 }
 
 func main() {
