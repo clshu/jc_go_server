@@ -1,4 +1,13 @@
 {{define "yield"}}
+<div class="card" style="width: 25rem;">
+  <div class="card-body">
+  <h5 class="card-title">Sign Up Now!</h5>
+    {{template "sigupForm"}}
+  </div>
+</div>
+{{end}}
+
+{{define "sigupForm"}}
 <form>
   <div class="mb-3">
     <label for="email" class="form-label">Email address</label>
