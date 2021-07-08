@@ -5,6 +5,7 @@ import "html/template"
 func NewView(layout string, files ...string) *View {
 	newFiles := append(files,
 		"views/layouts/boostrap.gohtml",
+		"views/layouts/navbar.gohtml",
 		"views/layouts/footer.gohtml",
 	)
 
