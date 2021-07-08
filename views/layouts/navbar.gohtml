@@ -1,14 +1,13 @@
 {{define "navbar"}}
-  
-  <nav class="navbar navbar-expand-sm navbar-dark bg-primary" aria-label="Third navbar example">
+<nav class="navbar navbar-expand navbar-dark bg-primary" aria-label="Second navbar example">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">Lens Locked</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+      {{/* <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
+      </button> */}}
 
-      <div class="collapse navbar-collapse" id="navbars03">
-        <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+      <div class="collapse navbar-collapse" id="navbarsExample02">
+        <ul class="navbar-nav me-auto">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
@@ -16,12 +15,14 @@
             <a class="nav-link active" href="/contact">Contact</a>
           </li>
         </ul>
+        <ul class="navbar-nav navbar-right me-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="/signup">Sign Up</a>
+          </li>
+        </ul>
         {{/* <form>
           <input class="form-control" type="text" placeholder="Search" aria-label="Search">
         </form> */}}
-        <ul class="navbar-nav navbar-right me-auto mb-2 mb-sm-0">
-          <a class="nav-link active" href="/signup">Sign Up</a>
-        </ul>
       </div>
     </div>
   </nav>
