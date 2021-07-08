@@ -2,8 +2,11 @@ package views
 
 import "html/template"
 
-func NewView(files ...string) *View {
-	newFiles := append(files, "views/layouts/footer.gohtml")
+func NewView(layout string, files ...string) *View {
+	newFiles := append(files,
+		"views/layouts/boostrap.gohtml",
+		"views/layouts/footer.gohtml",
+	)
 
 	t, err := template.ParseFiles(newFiles...)
 	if err != nil {
@@ -12,9 +15,11 @@ func NewView(files ...string) *View {
 
 	return &View{
 		Template: t,
+		Layout:   layout,
 	}
 }
 
 type View struct {
 	Template *template.Template
+	Layout   string
 }
