@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 
+	"github.com/clshu/jc_go_server/controllers"
 	"github.com/clshu/jc_go_server/views"
 	"github.com/gorilla/mux"
 )
@@ -27,22 +28,16 @@ func contact(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func signup(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "text/html")
-	if err := signupView.Render(w, nil); err != nil {
-		panic(err)
-	}
-}
-
 func main() {
-	homeView = views.NewView("boostrap", "views/home.gohtml")
-	contactView = views.NewView("boostrap", "views/contact.gohtml")
-	signupView = views.NewView("boostrap", "views/signup.gohtml")
+	homeView = views.NewView("bootstrap", "views/home.gohtml")
+	contactView = views.NewView("bootstrap", "views/contact.gohtml")
+	signupView = views.NewView("bootstrap", "views/users/new.gohtml")
+	usersC := controllers.NewUser()
 
 	r := mux.NewRouter()
 	r.HandleFunc("/", home)
 	r.HandleFunc("/contact", contact)
-	r.HandleFunc("/signup", signup)
+	r.HandleFunc("/signup", usersC.New)
 
 	_ = http.ListenAndServe(":3000", r)
 }
