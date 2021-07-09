@@ -5,7 +5,6 @@ import (
 	"net/http"
 
 	"github.com/clshu/jc_go_server/views"
-	"github.com/gorilla/schema"
 )
 
 // NewUser is used to create a new Users controller.
@@ -25,8 +24,6 @@ type SignupForm struct {
 	Password string `schema:"password"`
 }
 
-var decoder = schema.NewDecoder()
-
 // GET /signup
 func (u *Users) New(w http.ResponseWriter, r *http.Request) {
 	if err := u.NewView.Render(w, nil); err != nil {
@@ -36,13 +33,8 @@ func (u *Users) New(w http.ResponseWriter, r *http.Request) {
 
 // POST /signup
 func (u *Users) Create(w http.ResponseWriter, r *http.Request) {
-
-	if err := r.ParseForm(); err != nil {
-		panic(err)
-	}
 	var form = SignupForm{}
-
-	if err := decoder.Decode(&form, r.PostForm); err != nil {
+	if err := parseForm(r, &form); err != nil {
 		panic(err)
 	}
 
